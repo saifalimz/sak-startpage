@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmark Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .links-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .link {
+            display: block;
+            padding: 10px;
+            margin: 10px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .link:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Bookmark Dashboard</h1>
+    <div class="links-container" id="linksContainer">
+        <!-- Links will be dynamically loaded here -->
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const linksContainer = document.getElementById("linksContainer");
+
+            // Example format of bookmarks.md:
+            // [Google](https://www.google.com)
+            // [GitHub](https://github.com)
+            // [OpenAI](https://www.openai.com)
+
+            // Fetch bookmarks from the text file
+            const bookmarksText = `
+                [Google](https://www.google.com)
+                [GitHub](https://github.com)
+                [OpenAI](https://www.openai.com)
+            `;
+
+            const links = parseBookmarks(bookmarksText);
+            displayBookmarks(links);
+
+            function parseBookmarks(bookmarksText) {
+                const regex = /\[(.*?)\]\((.*?)\)/g;
+                const matches = bookmarksText.matchAll(regex);
+                const links = [];
+
+                for (const match of matches) {
+                    links.push({
+                        title: match[1],
+                        url: match[2]
+                    });
+                }
+
+                return links;
+            }
+
+            function displayBookmarks(links) {
+                links.forEach(link => {
+                    const linkElement = document.createElement("a");
+                    linkElement.href = link.url;
+                    linkElement.className = "link";
+                    linkElement.textContent = link.title;
+                    linksContainer.appendChild(linkElement);
+                });
+            }
+        });
+    </script>
+</div>
+
+</body>
+</html>
