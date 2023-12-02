@@ -56,20 +56,14 @@
         document.addEventListener("DOMContentLoaded", function () {
             const linksContainer = document.getElementById("linksContainer");
 
-            // Example format of bookmarks.md:
-            // [Google](https://www.google.com)
-            // [GitHub](https://github.com)
-            // [OpenAI](https://www.openai.com)
-
             // Fetch bookmarks from the text file
-            const bookmarksText = `
-                [Google](https://www.google.com)
-                [GitHub](https://github.com)
-                [OpenAI](https://www.openai.com)
-            `;
-
-            const links = parseBookmarks(bookmarksText);
-            displayBookmarks(links);
+            fetch('bookmarks.md')
+                .then(response => response.text())
+                .then(bookmarksText => {
+                    const links = parseBookmarks(bookmarksText);
+                    displayBookmarks(links);
+                })
+                .catch(error => console.error('Error fetching bookmarks:', error));
 
             function parseBookmarks(bookmarksText) {
                 const regex = /\[(.*?)\]\((.*?)\)/g;
