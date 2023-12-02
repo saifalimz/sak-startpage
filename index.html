@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAKMZ's Dashboard</title>
+    <title>Bookmark Dashboard</title>
     <style>
         body {
             font-family: 'Helvetica Neue', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom right, #ff7e5f, #feb47b, #ffcb9a);
-            color: #fff;
+            background: linear-gradient(to bottom right, #fd746c, #ff9068, #ffab60);
+            color: #333; /* Updated text color for better readability */
             height: 100vh;
             overflow: hidden;
         }
@@ -21,8 +21,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            background: linear-gradient(to bottom right, #333, #000);
+            background: linear-gradient(to bottom right, #404040, #000); /* Darker background */
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             padding: 20px;
@@ -30,21 +29,22 @@
         }
 
         h1 {
-            color: #ff7e5f;
+            color: #fd746c; /* Accent color for the header */
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .links-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: flex-start;
         }
 
         .link {
             display: block;
             padding: 15px;
             margin: 15px;
-            background: linear-gradient(to bottom right, #ff7e5f, #feb47b, #ffcb9a);
+            background: linear-gradient(to bottom right, #ff9068, #ffab60, #ffb749); /* Warmer tones */
             color: #fff;
             text-decoration: none;
             border-radius: 8px;
@@ -52,14 +52,14 @@
         }
 
         .link:hover {
-            background: linear-gradient(to bottom right, #d8604c, #c9795e, #d88a6d);
+            background: linear-gradient(to bottom right, #e0735c, #c9795e, #d88a6d);
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>SAKMZ's Dashboard</h1>
+    <h1>Bookmark Dashboard</h1>
     <div class="links-container" id="linksContainer">
         <!-- Links will be dynamically loaded here -->
     </div>
