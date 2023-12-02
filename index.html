@@ -44,6 +44,7 @@
         }
 
         .link {
+            flex: 0 0 100%; /* Take full width on small screens, stack vertically */
             display: block;
             padding: 15px;
             margin: 15px;
@@ -52,6 +53,7 @@
             text-decoration: none;
             border-radius: 8px;
             transition: background 0.3s;
+            box-sizing: border-box;
         }
 
         .link:hover {
