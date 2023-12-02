@@ -6,93 +6,136 @@
     <title>Bookmark Dashboard</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 0;
-            background: linear-gradient(to bottom, #3498db, #2980b9);
-            color: #fff;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background: #f4f4f4;
+            color: #333;
         }
 
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
+        header, main, footer {
+            background: #333;
+            color: #fff;
             text-align: center;
+            padding: 1rem;
         }
 
-        h1 {
-            color: #fff;
+        header {
+            font-size: 2rem;
+            border-bottom: 2px solid #FFA07A;
+            margin-bottom: 20px;
         }
 
-        .links-container {
+        main {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #container {
+            width: 100%;
+            max-width: 600px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        #container h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-family: 'Arial', sans-serif;
         }
 
         .link {
             display: block;
             padding: 10px;
-            margin: 10px;
-            background: linear-gradient(to bottom, #2ecc71, #27ae60);
+            margin: 10px 0;
+            background-color: #3498db;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
-            transition: background 0.3s;
+            transition: background-color 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: left;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
         .link:hover {
-            background: linear-gradient(to bottom, #218c53, #1f8049);
+            background-color: #2980b9;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 1rem;
+        }
+
+        footer a {
+            color: #FFA07A;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
+<header>
     <h1>Bookmark Dashboard</h1>
-    <div class="links-container" id="linksContainer">
+</header>
+
+<main>
+    <div id="container">
         <!-- Links will be dynamically loaded here -->
     </div>
+</main>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const linksContainer = document.getElementById("linksContainer");
+<footer>
+    <p>&copy; 2023 Bookmark Dashboard | <a href="#">Privacy Policy</a></p>
+</footer>
 
-            // Fetch bookmarks from the text file
-            fetch('bookmarks.md')
-                .then(response => response.text())
-                .then(bookmarksText => {
-                    const links = parseBookmarks(bookmarksText);
-                    displayBookmarks(links);
-                })
-                .catch(error => console.error('Error fetching bookmarks:', error));
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const container = document.getElementById("container");
 
-            function parseBookmarks(bookmarksText) {
-                const regex = /\[(.*?)\]\((.*?)\)/g;
-                const matches = bookmarksText.matchAll(regex);
-                const links = [];
+        // Fetch bookmarks from the text file
+        fetch('bookmarks.md')
+            .then(response => response.text())
+            .then(bookmarksText => {
+                const links = parseBookmarks(bookmarksText);
+                displayBookmarks(links);
+            })
+            .catch(error => console.error('Error fetching bookmarks:', error));
 
-                for (const match of matches) {
-                    links.push({
-                        title: match[1],
-                        url: match[2]
-                    });
-                }
+        function parseBookmarks(bookmarksText) {
+            const regex = /\[(.*?)\]\((.*?)\)/g;
+            const matches = bookmarksText.matchAll(regex);
+            const links = [];
 
-                return links;
-            }
-
-            function displayBookmarks(links) {
-                links.forEach(link => {
-                    const linkElement = document.createElement("a");
-                    linkElement.href = link.url;
-                    linkElement.className = "link";
-                    linkElement.textContent = link.title;
-                    linksContainer.appendChild(linkElement);
+            for (const match of matches) {
+                links.push({
+                    title: match[1],
+                    url: match[2]
                 });
             }
-        });
-    </script>
-</div>
+
+            return links;
+        }
+
+        function displayBookmarks(links) {
+            links.forEach(link => {
+                const linkElement = document.createElement("a");
+                linkElement.href = link.url;
+                linkElement.className = "link";
+                linkElement.textContent = link.title;
+                container.appendChild(linkElement);
+            });
+        }
+    });
+</script>
 
 </body>
 </html>
