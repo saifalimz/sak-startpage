@@ -3,31 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>theDASHBOARD</title>
+    <title>SAKMZ's Dashboard</title>
     <style>
         body {
             font-family: 'Helvetica Neue', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom right, #4bb0d6, #4a99c7);
+            background: linear-gradient(to bottom right, #ff7e5f, #feb47b, #ffcb9a);
             color: #fff;
             height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow: hidden;
         }
 
         .container {
-            max-width: 600px;
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.9);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom right, #333, #000);
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             padding: 20px;
+            overflow-y: auto;
         }
 
         h1 {
-            color: #007aff;
+            color: #ff7e5f;
+            margin-bottom: 20px;
         }
 
         .links-container {
@@ -40,7 +44,7 @@
             display: block;
             padding: 15px;
             margin: 15px;
-            background: linear-gradient(to bottom right, #007aff, #0056b3);
+            background: linear-gradient(to bottom right, #ff7e5f, #feb47b, #ffcb9a);
             color: #fff;
             text-decoration: none;
             border-radius: 8px;
@@ -48,14 +52,14 @@
         }
 
         .link:hover {
-            background: linear-gradient(to bottom right, #0056b3, #003366);
+            background: linear-gradient(to bottom right, #d8604c, #c9795e, #d88a6d);
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Bookmark Dashboard</h1>
+    <h1>SAKMZ's Dashboard</h1>
     <div class="links-container" id="linksContainer">
         <!-- Links will be dynamically loaded here -->
     </div>
